@@ -25,7 +25,10 @@ import dotenv from "dotenv";
 dotenv.config(); // load EMAIL and PASSWORD from .env
 
 const app = express();
-app.use(cors());
+app.use(cors({
+   origin: "https://portfolio-frontend-9m8g.onrender.com"
+}
+  ));
 app.use(express.json());
 
 app.post("/api/contact", async (req, res) => {
@@ -61,4 +64,7 @@ app.post("/api/contact", async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("✅ Server running on http://localhost:5000"));
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+// app.listen(5000, () => console.log("✅ Server running on http://localhost:5000"));
